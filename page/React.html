@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>React</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h2 class="mume-header" id="%E6%B7%B1%E5%85%A5%E6%B5%85%E4%B9%8B-react-%E6%A1%86%E6%9E%B6">深入浅之 React 框架</h2>
+
+<ul>
+<li>
+<h3>什么是 React</h3>
+<blockquote>
+<p>React 用来构建UI的 JavaScript库,而不是一个 MVC 框架，仅仅是视图（V）层的库</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>
+<h3>基本原理</h3>
+<p>当你使用React的时候，在某个时间点 render() 函数创建了一棵React元素树，在下一个state或者props更新的时候，render() 函数将创建一棵新的React元素树，React将对比这两棵树的不同之处，计算出如何高效的更新UI（只更新变化的地方）。</p>
+<ul>
+<li>
+<h5>特点:</h5>
+<ol>
+<li>使用 JSX语法 创建组件，实现组件化开发</li>
+<li>性能高，通过 diff算法 和 虚拟DOM 实现视图的高效更新</li>
+<li>技术成熟，社区完善，配件齐全，适用于大型Web项目（生态系统健全）</li>
+<li>使用方式简单，性能非常高，支持服务端渲染</li>
+</ol>
+</li>
+<li>
+<h5>官方参考文档</h5>
+<p><a href="https://facebook.github.io/react">React 官网</a><br>
+<a href="https://doc.react-china.org">React 中文文档</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<h3>React 安装</h3>
+<ul>
+<li>
+<h4>直接引 js 入文件</h4>
+<ol>
+<li>
+<h5>直接去官网下载并引入这三个库： react.min.js 、react-dom.min.js 和 babel.min.js</h5>
+<p><code>react.min.js</code> - React 的核心库<br>
+<code>react-dom.min.js</code> - 提供与 DOM 相关的功能<br>
+<code>babel.min.js</code>  - Babel 可以将 ES6 代码转为 ES5 代码，这样我们就能在目前不支持 ES6 浏览器上执行 React 代码。Babel 内嵌了对 JSX 的支持。通过将 Babel 和 babel-sublime 包（package）一同使用可以让源码的语法渲染上升到一个全新的水平。</p>
+<h5>注意：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">如果需要使用 <span class="token constant">JSX</span>，则 <span class="token operator">&lt;</span>script<span class="token operator">></span> 标签的 type 属性需要设置为 text<span class="token operator">/</span>babel。
+</pre></li>
+<li>
+<h5>也可以直接使用 BootCDN 的 React CDN 库：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 生产环境中不建议使用 <span class="token operator">--</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</pre></li>
+<li>
+<h5>官方提供的 CDN 地址：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://unpkg.com/react@16/umd/react.development.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://unpkg.com/react-dom@16/umd/react-dom.development.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 生产环境中不建议使用 <span class="token operator">--</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://unpkg.com/babel-standalone@6.15.0/babel.min.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</pre></li>
+</ol>
+</li>
+<li>
+<h4>通过 npm 安装 React</h4>
+<p>国内使用 npm 速度很慢，你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">$ npm install <span class="token operator">-</span>g cnpm <span class="token operator">--</span>registry<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>registry<span class="token punctuation">.</span>npm<span class="token punctuation">.</span>taobao<span class="token punctuation">.</span>org
+
+$ npm config <span class="token keyword">set</span> registry https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>registry<span class="token punctuation">.</span>npm<span class="token punctuation">.</span>taobao<span class="token punctuation">.</span>org
+</pre><p>这样就可以使用 cnpm 命令来安装模块了：</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">$ cnpm install <span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+</pre></li>
+<li>
+<h4>使用 create-react-app 快速构建 React 开发环境</h4>
+<p><code>create-react-app</code> 是来自于 Facebook，通过该命令我们无需配置就能快速构建 React 开发环境。</p>
+<p><code>create-react-app</code> 自动创建的项目是基于 Webpack + ES6 。</p>
+<h5>执行以下命令创建项目：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">$ cnpm install <span class="token operator">-</span>g create<span class="token operator">-</span>react<span class="token operator">-</span>app  <span class="token comment">//安装　create-react-app </span>
+$ create<span class="token operator">-</span>react<span class="token operator">-</span>app my<span class="token operator">-</span>app　　　　　　　<span class="token comment">//使用 create-react-app 创建 my-app 项目</span>
+$ cd my<span class="token operator">-</span>app<span class="token operator">/</span>                         <span class="token comment">//进入创建的文件夹</span>
+$ npm start                          <span class="token comment">//跑起项目</span>
+</pre></li>
+</ul>
+</li>
+<li>
+<h3>模块的导入和导出</h3>
+<ul>
+<li>
+<h4>模块导出方式</h4>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">20</span>
+
+<span class="token comment">// 1.命名导出 可以使用多次</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> a<span class="token punctuation">,</span> b <span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> b <span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token number">30</span>
+
+<span class="token comment">// 2.默认导出 只能使用一次可以和命名导出同时使用</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> a
+</pre></li>
+<li>
+<h4>模块导入方式</h4>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">//1.命名导入  导入的变量名必须和导出的相同</span>
+<span class="token comment">// a as c 相当于导入 a 改名成 c</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>a <span class="token keyword">as</span> c<span class="token punctuation">,</span>b<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./test'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>b<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./test'</span>
+
+<span class="token comment">//2.默认导入  导入的变量名随意</span>
+<span class="token keyword">import</span> xxx <span class="token keyword">from</span> <span class="token string">'./test'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>c<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./test'</span>
+<span class="token keyword">import</span> xxx<span class="token punctuation">,</span><span class="token punctuation">{</span>c<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./test'</span>
+</pre></li>
+</ul>
+<ul>
+<li>
+<h4>第三方模块和核心模块导入方式</h4>
+<p>使用npm下载的第三方模块，但是由于 <code>require</code> 是属于 <code>node</code> 的方法，浏览器不支持所以我们先使用 node 命令运行js文件看效果。以后我们会用 webpack 工具帮助我们搭建开发环境编译 node 方法使其让浏览器支持。<code>require</code> 方法是去第三方模块内的 package.json 下声明的入口文件找某个js文件。</p>
+<h5>使用 <code>module.exports</code> 导出，<code>require('路径')</code> 导入。</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">var</span> $ <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'jquery'</span><span class="token punctuation">)</span>  <span class="token comment">//导入</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">20</span>
+<span class="token keyword">var</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+<span class="token punctuation">}</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> add       <span class="token comment">//导出</span>
+</pre></li>
+</ul>
+</li>
+<li>
+<h3>React State(状态)</h3>
+<blockquote>
+<p>React 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致。只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。</p>
+</blockquote>
+<ul>
+<li>
+<h5>作用：</h5>
+<p>用来给组件提供组件内部使用的数据</p>
+</li>
+<li>
+<h5>注意：</h5>
+<ol>
+<li>只有通过class创建的组件才具有状态</li>
+<li>状态是私有的，完全由组件来控制</li>
+<li>不要在 state 中添加 render() 方法中不需要的数据，会影响渲染性能！</li>
+<li>可以将组件内部使用但是不渲染在视图中的内容，直接添加给 this</li>
+<li>不要在 render() 方法中调用 setState() 方法来修改state的值，但是可以通过 <a href="http://this.state.name">this.state.name</a> = 'rose' 方式设置state（不推荐!!!!）</li>
+</ol>
+</li>
+<li>
+<h5>书写 state 两种方式如下：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+        key<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
+        <span class="token operator">...</span>
+        <span class="token operator">...</span>
+        <span class="token operator">...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//简写方式:</span>
+
+state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    key<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
+        <span class="token operator">...</span>
+        <span class="token operator">...</span>
+        <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<h5>修改 <code>state</code>，组件并不会重新重发 <code>render</code>。例如：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>title<span class="token punctuation">:</span> <span class="token string">'React'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<h5>获取 <code>state</code>。例如：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span>key<span class="token punctuation">}</span><span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>state
+<span class="token comment">//或者</span>
+<span class="token keyword">const</span> key <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+</pre></li>
+</ul>
+</li>
+<li>
+<h3>React Props</h3>
+<ul>
+<li>
+<p>state 和 props 主要的区别在于 props 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。 而子组件只能通过 props 来传递数据。</p>
+</li>
+<li>
+<h5>作用：</h5>
+<p>给组件传递数据，一般用在父子组件之间</p>
+</li>
+<li>
+<h5>说明：</h5>
+<p>React 把传递给组件的属性转化为一个对象并交给 props</p>
+</li>
+<li>
+<h5>特点：</h5>
+<p>props 是只读的，无法给props添加或修改属性<br>
+props.children：获取组件的内容，比如：<code>&lt;Hello&gt;组件内容&lt;/Hello&gt; 中的 组件内容</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<h3>使用PropTypes进行类型检查</h3>
+<blockquote>
+<p>React.PropTypes 在 React v15.5 版本后已经移到了 prop-types 库。Props 验证使用 propTypes，它可以保证我们的应用组件被正确使用，React.PropTypes 提供很多验证器 (validator) 来验证传入数据是否有效。当向 props 传入无效数据时，JavaScript 控制台会抛出警告。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</pre><ul>
+<li>
+<h4>PropTypes 验证器的示例</h4>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">'prop-types'</span><span class="token punctuation">;</span>
+
+    MyComponent<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 您可以声明一个道具是一个特定的JS类型。默认情况下，这些都是可选的。</span>
+    optionalArray<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>array<span class="token punctuation">,</span>
+    optionalBool<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>bool<span class="token punctuation">,</span>
+    optionalFunc<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">,</span>
+    optionalNumber<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>number<span class="token punctuation">,</span>
+    optionalObject<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>object<span class="token punctuation">,</span>
+    optionalString<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">,</span>
+    optionalSymbol<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>symbol<span class="token punctuation">,</span>
+
+    <span class="token comment">// 可以呈现的任何东西：包含这些类型的数字、字符串、元素或数组（或片段）。</span>
+    optionalNode<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>node<span class="token punctuation">,</span>
+
+    <span class="token comment">// 反应元件</span>
+    optionalElement<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>element<span class="token punctuation">,</span>
+
+    <span class="token comment">// 您还可以声明一个PROP是一个类的实例。这使用JS的实例操作符。</span>
+    optionalMessage<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">instanceOf</span><span class="token punctuation">(</span>Message<span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 您可以通过将其视为枚举来确保您的道具仅限于特定值。</span>
+    optionalEnum<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">oneOf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'News'</span><span class="token punctuation">,</span> <span class="token string">'Photos'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 可以是多种类型之一的对象</span>
+    optionalUnion<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">oneOfType</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">,</span>
+        PropTypes<span class="token punctuation">.</span>number<span class="token punctuation">,</span>
+        PropTypes<span class="token punctuation">.</span><span class="token function">instanceOf</span><span class="token punctuation">(</span>Message<span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 某种类型的数组</span>
+    optionalArrayOf<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 具有某种类型的属性值的对象</span>
+    optionalObjectOf<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">objectOf</span><span class="token punctuation">(</span>PropTypes<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">//具有特定形状的物体</span>
+    optionalObjectWithShape<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">shape</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        color<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">,</span>
+        fontSize<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>number
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 如果没有提供道具，您可以将上面的任何一个链接为“Is必需品”，以确保显示出警告。</span>
+    requiredFunc<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>func<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
+
+    <span class="token comment">// 一个数据类型值</span>
+    requiredAny<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>any<span class="token punctuation">.</span>isRequired<span class="token punctuation">,</span>
+
+    <span class="token comment">// 还可以指定自定义验证器。如果验证失败，它应该返回一个错误对象。不要“控制台，警告”或“扔”，因为这不能在“OfFoType”中工作。</span>
+    customProp<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> propName<span class="token punctuation">,</span> componentName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token regex">/matchme/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>props<span class="token punctuation">[</span>propName<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>
+            <span class="token string">'Invalid prop `'</span> <span class="token operator">+</span> propName <span class="token operator">+</span> <span class="token string">'` supplied to'</span> <span class="token operator">+</span>
+            <span class="token string">' `'</span> <span class="token operator">+</span> componentName <span class="token operator">+</span> <span class="token string">'`. Validation failed.'</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 您还可以为“ARALYOF”和“Objutof”提供自定义验证器。如果验证失败，它应该返回一个错误对象。将为数组或对象中的每个键调用验证器。验证器的前两个参数是数组或对象本身，以及当前项的密钥。</span>
+    customArrayProp<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span><span class="token function">arrayOf</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>propValue<span class="token punctuation">,</span> key<span class="token punctuation">,</span> componentName<span class="token punctuation">,</span> location<span class="token punctuation">,</span> propFullName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token regex">/matchme/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>propValue<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>
+            <span class="token string">'Invalid prop `'</span> <span class="token operator">+</span> propFullName <span class="token operator">+</span> <span class="token string">'` supplied to'</span> <span class="token operator">+</span>
+            <span class="token string">' `'</span> <span class="token operator">+</span> componentName <span class="token operator">+</span> <span class="token string">'`. Validation failed.'</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><ul>
+<li>
+<h4>实例</h4>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">'prop-types'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Greeting</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span>
+                <span class="token operator">&lt;</span>h1<span class="token operator">></span>Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+Greeting<span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>string
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></li>
+</ul>
+<ul>
+<li>
+<h3>组件的生命周期</h3>
+<ol>
+<li>
+<h5>简单说：一个组件从开始到最后消亡所经历的各种状态，就是一个组件的生命周期</h5>
+</li>
+<li>
+<h5>组件生命周期函数的定义：从组件被创建，到组件挂载到页面上运行，再到页面关</h5>
+</li>
+<li>
+<p>闭组件被卸载，这三个阶段总是伴随着组件各种各样的事件，那么这些事件，统称为组件的生命周期函数。</p>
+<h5>组件的生命周期包含三个阶段：<code>创建阶段（Mounting）</code>、<code>运行和交互阶段（Updating）</code>、<code>卸载阶段（Unmounting）</code></h5>
+</li>
+</ol>
+<ul>
+<li>
+<h4>创建阶段（Mounting）</h4>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">componentWillMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<h4>运行和交互阶段（Updating）</h4>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">componentWillUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<h4>卸载阶段（Unmounting）</h4>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<h4>创建阶段(Mounting)</h4>
+<p>特点：该阶段的函数只执行一次</p>
+<ul>
+<li>
+<h5>constructor()</h5>
+<p>作用：1 获取props 2 初始化state<br>
+说明：通过 constructor() 的参数props获取</p>
+</li>
+<li>
+<h5>componentWillMount()</h5>
+<p>说明：组件被挂载到页面之前调用，其在render()之前被调用，因此在这方法里同步地设置状态将不会触发重渲染<br>
+注意：无法获取页面中的DOM对象<br>
+注意：可以调用 setState() 方法来改变状态值<br>
+用途：发送ajax请求获取数据</p>
+</li>
+<li>
+<h5>render()</h5>
+<p>作用：渲染组件到页面中，无法获取页面中的DOM对象<br>
+注意：不要在render方法中调用 setState() 方法，否则会递归渲染</p>
+<p>原因说明：状态改变会重新调用render()，render()又重新改变状态</p>
+</li>
+<li>
+<h5>componentDidMount()</h5>
+<p>1 组件已经挂载到页面中<br>
+2 可以进行DOM操作，比如：获取到组件内部的DOM对象<br>
+3 可以发送请求获取数据<br>
+4 可以通过 setState() 修改状态的值<br>
+注意：在这里修改状态会重新渲染</p>
+</li>
+</ul>
+</li>
+<li>
+<h4>运行阶段（Updating）</h4>
+<p>特点：该阶段的函数执行多次<br>
+说明：每当组件的props或者state改变的时候，都会触发运行阶段的函数</p>
+<ul>
+<li>
+<h5>componentWillReceiveProps()</h5>
+<p>说明：组件接受到新的props前触发这个方法<br>
+参数：当前组件props值<br>
+可以通过 this.props 获取到上一次的值<br>
+使用：若你需要响应属性的改变，可以通过对比this.props和nextProps并在该方法中使用this.setState()处理状态改变<br>
+注意：修改state不会触发该方法</p>
+</li>
+<li>
+<h5>shouldComponentUpdate()</h5>
+<p>作用：根据这个方法的返回值决定是否重新渲染组件，返回true重新渲染，否则不渲染<br>
+优势：通过某个条件渲染组件，降低组件渲染频率，提升组件性能<br>
+说明：如果返回值为false，那么，后续render()方法不会被调用<br>
+注意：这个方法必须返回布尔值！！！<br>
+场景：根据随机数决定是否渲染组件</p>
+</li>
+<li>
+<h5>componentWillUpdate()</h5>
+<p>作用：组件将要更新<br>
+参数：最新的属性和状态对象<br>
+注意：不能修改状态 否则会循环渲染</p>
+</li>
+<li>
+<h5>render() 渲染</h5>
+<p>作用：重新渲染组件，与Mounting阶段的render是同一个函数<br>
+注意：这个函数能够执行多次，只要组件的属性或状态改变了，这个方法就会重新执行</p>
+</li>
+<li>
+<h5>componentDidUpdate()</h5>
+<p>作用：组件已经被更新<br>
+参数：旧的属性和状态对象</p>
+</li>
+</ul>
+</li>
+<li>
+<h4>卸载阶段（Unmounting）</h4>
+<ul>
+<li>组件销毁阶段：组件卸载期间，函数比较单一，只有一个函数，这个函数也有一个显著的特点：组件一辈子只能执行依次！</li>
+<li>使用说明：只要组件不再被渲染到页面中，那么这个方法就会被调用（ 渲染到页面中 -&gt; 不再渲染到页面中 ）</li>
+</ul>
+</li>
+<li>
+<h4>componentWillUnmount()</h4>
+<ul>
+<li>作用：在卸载组件的时候，执行清理工作，比如</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h3>生命周期案例</h3>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">    <span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+        text<span class="token punctuation">:</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'生命周期函数----- constructor --- 初始化state'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token function">getDerivedStateFromProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">,</span> prevState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 必须返回一个 state</span>
+        <span class="token comment">// 实例化组件的时候 和  当组件接收新的 props 时 该生命周期函数被执行</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'生命周期函数----- static getDerivedStateFromProps'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 该函数必须返回一个布尔值 来控制是否更新</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'生命周期函数----- shouldComponentUpdate 是否同意组件更新'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token function-variable function">handleClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        text<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>text <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'生命周期函数----- render 渲染到页面'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>div<span class="token operator">></span>
+            <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleClick<span class="token punctuation">}</span><span class="token operator">></span><span class="token operator">+</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+            <span class="token operator">&lt;</span>span<span class="token operator">></span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>text<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 这个生命周期函数内 允许发送网络请求修改 state</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'生命周期函数----- componentDidMount  组件装配完毕'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 自定义代码片段</span>
+    <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'生命周期函数----- componentDidUpdate  组件更新完毕'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">default</span> Test
+</pre></li>
+</ul>
+<ul>
+<li>
+<h3>受控组件</h3>
+<p>受控组件在HTML当中，像<code>input</code>,<code>textarea</code>和<code>select</code>这类表单元素会维持自身状态，并根据用户输入进行更新。<br>
+在React中，可变的状态通常保存在组件的state中，并且只能用 <code>setState()</code> 方法进行更新. React根据初始状态渲染表单组件，接受用户后续输入，改变表单组件内部的状态。因此，将那些值由React控制的表单元素称为：受控组件。<br>
+简单来说，页面中输入内容的变化必须使用 <code>state</code> 控制，使用 <code>onChange</code> 事件修改 <code>state</code> ，<code>onChange</code> 只要输入框内容发生改变就会被触发。案例：</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">handleChange</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//修改 state</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        value<span class="token punctuation">:</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span>value<span class="token punctuation">}</span><span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token comment">//输入</span>
+        <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>value<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=></span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleChange</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span>
+        <span class="token comment">//输出</span>
+        <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span>value<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre></li>
+</ul>
+<p>}<br>
+```</p>
+<ul>
+<li>
+<h3>非受控组件</h3>
+<p>非受控组件:页面中输入内容的变化不受 state 控制</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">    <span class="token operator">&lt;</span>label htmlFor<span class="token operator">=</span><span class="token string">"username"</span><span class="token operator">></span>用户名<span class="token operator">&lt;</span><span class="token operator">/</span>label<span class="token operator">></span>
+    <span class="token operator">&lt;</span>input id<span class="token operator">=</span><span class="token string">"username"</span> type<span class="token operator">=</span><span class="token string">"text"</span> defaultValue<span class="token operator">=</span><span class="token string">"默认"</span> <span class="token operator">/</span><span class="token operator">></span>
+</pre></li>
+<li>
+<h3>React 补充内容</h3>
+<ul>
+<li>
+<h4>key 属性</h4>
+<p>React提供了一个 key 属性。当子节点带有key属性，React会通过key来匹配原始树和后来的树。</p>
+<ul>
+<li>
+<h5>说明：</h5>
+key属性在React内部使用，但不会传递给你的组件</li>
+<li>
+<h5>推荐：</h5>
+在遍历数据时，推荐在组件中使用 key 属性<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token operator">&lt;</span>li key<span class="token operator">=</span><span class="token punctuation">{</span>item<span class="token punctuation">.</span>id<span class="token punctuation">}</span><span class="token operator">></span><span class="token punctuation">{</span>item<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">></span>
+</pre></li>
+<li>
+<h5>注意：</h5>
+key只需要保持与他的兄弟节点唯一即可，不需要全局唯一,尽可能的减少数组index作为key，数组中插入元素的等操作时，会使得效率底下</li>
+</ul>
+</li>
+<li>
+<h4>JSX 的基本使用</h4>
+<ul>
+<li>
+<h5>JSX语法，最终会被编译为 <code>createElement()</code> 方法，推荐，使用 JSX 的方式创建组件</h5>
+</li>
+<li>
+<h5>JSX - JavaScript XML</h5>
+<ul>
+<li>
+<h5>安装：</h5>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">npm i <span class="token operator">-</span><span class="token constant">D</span> babel<span class="token operator">-</span>preset<span class="token operator">-</span>react （依赖与：babel<span class="token operator">-</span>core<span class="token operator">/</span>babel<span class="token operator">-</span>loader）
+</pre></li>
+<li>
+<h5>注意点</h5>
+<ol>
+<li>JSX的语法需要通过 <code>babel-preset-react</code> 编译后，才能被解析执行</li>
+<li>如果在 JSX 中给元素添加类, 需要使用 <code>className 代替 class</code></li>
+<li>label 的 <code>for</code> 属性，使用 <code>htmlFor代</code> 替</li>
+<li>在 JSX 中可以直接使用 JS代码，直接在 JSX 中通过 <code>{}</code> 中间写 JS代码即可</li>
+<li>在 JSX 中只能使用表达式，但是不能出现 语句！！！</li>
+<li>在 JSX 中注释语法：<code>{/* 中间是注释的内容 */}</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4>react 包作用:</h4>
+<p>允许 js 内填写 html 语法，我们将这种语法叫做 jsx 语法</p>
+</li>
+<li>
+<h4>react-dom 包作用:</h4>
+<p>ReactDOM.render方法 将 App 渲染都 root下, 将虚拟的 react dom 节点渲染到真实的 dom 节点上</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<h3>将 <code>react</code> 项目部署到 <code>github</code> 的 <code>gh-pages</code> 分支</h3>
+<ul>
+<li>
+<h4>方案一</h4>
+<ul>
+<li>第一步<br>
+验证我们的项目能否在 <code>React</code> 搭建的环境下正常运行，如果可以，则执行下面的第二步，否则修改项目代码。</li>
+</ul>
+<ul>
+<li>第二步<br>
+需要在项目的 <code>package.json</code> 中的 <code>script</code> 字段下添加如下代码：<pre data-role="codeBlock" data-info="js" class="language-javascript">    <span class="token string">"predeploy"</span><span class="token punctuation">:</span> <span class="token string">"npm run build"</span><span class="token punctuation">,</span> 
+    <span class="token string">"deploy"</span><span class="token punctuation">:</span> <span class="token string">"gh-pages -d build"</span>
+</pre></li>
+</ul>
+<ul>
+<li>
+<p>第三步</p>
+<p>在我们自己的 GitHub 上新建仓库，然后将我们的项目 <code>git push</code> 到我们的新建的仓库下，之后在本地新建 <code>gh-pages</code> 分支 , 然后切换到 <code>gh-pages</code> 分支，执行 <code>npm run build</code> 然后将里面的所有内容删除 只留下 <code>.git</code> 、<code>.gitignore</code> 和 <code>build</code> 文件夹下的所有内容(不需要 build 文件夹)<br>
+删除之前仓库内部内容如下:<br>
+<img src="../img/pic1.PNG" alt="&#x5220;&#x9664;&#x4E4B;&#x524D;&#x4ED3;&#x5E93;&#x5185;&#x90E8;&#x5185;&#x5BB9;"><br>
+删除之后仓库内部内容如下:<br>
+<img src="../img/pic2.PNG" alt="&#x5220;&#x9664;&#x4E4B;&#x524D;&#x4ED3;&#x5E93;&#x5185;&#x90E8;&#x5185;&#x5BB9;"></p>
+</li>
+<li>
+<p>第四步<br>
+然后 <code>git</code> 三步 更新 <code>gh-pages</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">git add <span class="token punctuation">.</span>
+git commit <span class="token operator">-</span>m<span class="token string">'describe'</span>
+git push origin gh<span class="token operator">-</span>pages
+</pre></li>
+<li>
+<p>第五步</p>
+<p>打开浏览器，在地址栏输入： <a href="https://zllugithub.github.io/react-cat-dom/">https://zllugithub.github.io/react-cat-dom</a> 就可以访问上传的项目了。</p>
+</li>
+<li>
+<p>附加</p>
+<p>如果 <code>homepage</code> 填写错误，想要更改的话，需要先到 <code>mster</code> 分支更新 <code>package.json</code> 的 <code>homepage</code>，然后执行 <code>npm run build</code> 将 <code>build</code> 内的 文件拷贝，再然后切换到 <code>gh-page</code>s 分支，将拷贝的内容粘贴到这里。最后更新 <code>gh-pages</code> 分支。</p>
+</li>
+</ul>
+</li>
+<li>
+<h4>方案二</h4>
+<ul>
+<li>
+<p>第一步<br>
+在方案一的第二步完成的基础上，在项目下，安装 <code>gh-pages</code> 包 , 命令如下：</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">npm i <span class="token operator">-</span><span class="token constant">D</span> gh<span class="token operator">-</span>pages
+</pre><p>安装完 <code>gh-pages</code> 之后在 <code>package.json</code> 中的 <code>script</code> 字段下添加如下内容：</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token string">"predeploy"</span><span class="token punctuation">:</span> <span class="token string">"npm run build"</span><span class="token punctuation">,</span> 
+<span class="token string">"deploy"</span><span class="token punctuation">:</span> <span class="token string">"gh-pages -d build"</span>
+</pre></li>
+</ul>
+<ul>
+<li>
+<p>第二步</p>
+<p>在我们自己的 GitHub 上新建仓库，然后将我们的项目 <code>git push</code> 到我们的新建的仓库下，之后在本地新建 <code>gh-pages</code> 分支 , 然后切换到 <code>gh-pages</code> 分支，执行 <code>npm run build</code> 然后将里面的所有内容删除 只留下 <code>.git</code> 、<code>.gitignore</code> 和 <code>build</code> 文件夹下的所有内容(不需要 build 文件夹)<br>
+删除之前仓库内部内容如下:<br>
+<img src="../img/pic1.PNG" alt="&#x5220;&#x9664;&#x4E4B;&#x524D;&#x4ED3;&#x5E93;&#x5185;&#x90E8;&#x5185;&#x5BB9;"><br>
+删除之后仓库内部内容如下:<br>
+<img src="../img/pic2.PNG" alt="&#x5220;&#x9664;&#x4E4B;&#x524D;&#x4ED3;&#x5E93;&#x5185;&#x90E8;&#x5185;&#x5BB9;"></p>
+<p>网上新建仓库将我们的项目传到网上，然后执行:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">npm run deploy
+</pre></li>
+<li>
+<p>第三步<br>
+然后 <code>git</code> 三步 更新 <code>gh-pages</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">git add <span class="token punctuation">.</span>
+git commit <span class="token operator">-</span>m<span class="token string">'describe'</span>
+git push origin gh<span class="token operator">-</span>pages
+</pre></li>
+<li>
+<p>第四步</p>
+<p>打开浏览器，在地址栏输入： <a href="https://zllugithub.github.io/react-cat-dom/">https://zllugithub.github.io/react-cat-dom</a> 就可以访问上传的项目了。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h3>将 react 项目部署到 netlify 免费服务器</h3>
+<ul>
+<li>
+<p>将我们的项目上传到 <code>github</code> 仓库</p>
+</li>
+<li>
+<p>到 <code>netlify</code> 网站上点击 <code>New sit from Git</code>，选择 GItHub，点击你要部署的仓库名</p>
+</li>
+<li>
+<p><code>Branch to Deploy</code> 选择 <code>master</code> 分支，<code>Build command</code> 填写 <code>npm run build</code> , <code>Publish directory</code> 填写 <code>build/</code></p>
+</li>
+<li>
+<p>最后点击 <code>Deploy site</code> ，在弹出的页面等待几分钟就部署成功了。</p>
+</li>
+<li>
+<h6>注意:</h6>
+<p>该方案 <code>package.json</code> 下不需要添加 <code>homepage</code> 字段。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      
+      
+    </body>
+    
+    <script src="../js/jquery-1.4.4.min.js"></script>
+    <script src="../js/templet-page.js"></script>
+    <script src="../js/zll_catalog.js"></script>
+    <script src="../js/index.js"></script>      
+    
+    
+    
+    
+    
+  </html>
